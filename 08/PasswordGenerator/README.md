@@ -1,2 +1,2 @@
-# EEXERCISE - THE MUSICIANS FEAST II
+# EXERCISE - THE MUSICIANS FEAST II
 ## Each musician is given a password to get into the feast's venue. Every password is generated the same way: a computer program takes the musician's last name and replaces every 'a' with an '@', and every 'i' with an exclamation point.
