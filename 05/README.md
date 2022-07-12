@@ -1,0 +1,1 @@
+## Write an algorithm that accepts as inputs a certain amount to be paid and the given money, and calculate all notes and coins (used in Portugal) to be given as change to the customer (minimising the amount of coins and notes).
