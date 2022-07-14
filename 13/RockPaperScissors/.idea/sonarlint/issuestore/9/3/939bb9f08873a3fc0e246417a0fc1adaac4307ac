@@ -1,0 +1,10 @@
+
+p	java:S116"ORename this field "ROCK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çëÒşÿÿÿÿ8­Šú´Ÿ0
+l	java:S116	"PRename this field "PAPER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÀÂíß8®Šú´Ÿ0
+o	java:S116
+"SRename this field "SCISSORS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ÿ‰¡8¯Šú´Ÿ0
+E
+java:S2140")Use "java.util.Random.nextInt()" instead.(„÷ê[8º¯ø´Ÿ0
+=
+java:S1110"!Remove these useless parentheses.(„÷ê[8»¯ø´Ÿ0
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(îí¨èúÿÿÿÿ8­õ´Ÿ0
