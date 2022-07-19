@@ -1,0 +1,15 @@
+
+€
+java:S1319"eThe type of "banks" should be an interface such as "List" rather than the implementation "ArrayList".(­—øıÿÿÿÿ
+~
+java:S1319"hThe type of "accounts" should be an interface such as "List" rather than the implementation "ArrayList".(íâ¹ø
+ƒ
+java:S1319"hThe type of "accounts" should be an interface such as "List" rather than the implementation "ArrayList".(â›•ªÿÿÿÿÿ
+z
+java:S1319$"eThe type of "cards" should be an interface such as "List" rather than the implementation "ArrayList".(µúb
+‚
+java:S1319/"eThe type of "cards" should be an interface such as "List" rather than the implementation "ArrayList".(¶ôØ¶8ƒïœ¡0
+J
+java:S1610"5Convert the abstract class "Utils" into an interface.(í€g
+O
+java:S1118":Add a private constructor to hide the implicit public one.(í€g
