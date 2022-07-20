@@ -3,9 +3,6 @@ package academy.mindswap;
 public class RockPaperScissors {
     public static Player player1 = new Player("Luís");
     public static Player player2 = new Player("Pedro");
-    private static final String ROCK = "rock";
-    private static final String PAPER = "paper";
-    private static final String SCISSORS = "scissors";
     private static final String DRAW = "draw";
     private static int totalDraws = 0;
 
@@ -13,15 +10,15 @@ public class RockPaperScissors {
     }
 
     private static Player verifyWinner(Player player1, Player player2) {
-        if (player1.getTool().equals(player2.getTool())) return null;
+        if (player1.getTool() == player2.getTool()) return null;
 
         switch (player1.getTool()) {
             case ROCK:
-                return SCISSORS.equals(player2.getTool()) ? player1 : player2;
+                return Tool.SCISSORS == player2.getTool() ? player1 : player2;
             case PAPER:
-                return ROCK.equals(player2.getTool()) ? player1 : player2;
+                return Tool.ROCK == player2.getTool() ? player1 : player2;
             default:
-                return PAPER.equals(player2.getTool()) ? player1 : player2;
+                return Tool.PAPER == player2.getTool() ? player1 : player2;
         }
     }
 

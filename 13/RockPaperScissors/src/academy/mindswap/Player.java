@@ -2,12 +2,8 @@ package academy.mindswap;
 
 public class Player {
     private String name;
-    private String tool;
-
+    private Tool tool;
     private int score = 0;
-    private String ROCK = "rock";
-    private String PAPER = "paper";
-    private String SCISSORS = "scissors";
 
     public Player(String name) {
         this.name = name;
@@ -18,9 +14,7 @@ public class Player {
     }
 
     public void pickRandomTool() {
-        String[] tools = {ROCK, PAPER, SCISSORS};
-
-        String picketTool = tools[getRandomNumber(0, 2)];
+        Tool picketTool = Tool.values()[getRandomNumber(0, 2)];
 
         System.out.printf("%s tool: %s%n", getName(), picketTool);
 
@@ -31,7 +25,7 @@ public class Player {
         return name;
     }
 
-    public String getTool() {
+    public Tool getTool() {
         return tool;
     }
 
@@ -43,7 +37,7 @@ public class Player {
         this.name = name;
     }
 
-    private void setTool(String tool) {
+    private void setTool(Tool tool) {
         this.tool = tool;
     }
 
