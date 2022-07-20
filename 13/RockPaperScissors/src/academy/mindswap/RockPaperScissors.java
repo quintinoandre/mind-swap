@@ -1,5 +1,7 @@
 package academy.mindswap;
 
+import static academy.mindswap.Tool.*;
+
 public class RockPaperScissors {
     public static Player player1 = new Player("Luís");
     public static Player player2 = new Player("Pedro");
@@ -14,11 +16,11 @@ public class RockPaperScissors {
 
         switch (player1.getTool()) {
             case ROCK:
-                return Tool.SCISSORS == player2.getTool() ? player1 : player2;
+                return SCISSORS == player2.getTool() ? player1 : player2;
             case PAPER:
-                return Tool.ROCK == player2.getTool() ? player1 : player2;
+                return ROCK == player2.getTool() ? player1 : player2;
             default:
-                return Tool.PAPER == player2.getTool() ? player1 : player2;
+                return PAPER == player2.getTool() ? player1 : player2;
         }
     }
 
