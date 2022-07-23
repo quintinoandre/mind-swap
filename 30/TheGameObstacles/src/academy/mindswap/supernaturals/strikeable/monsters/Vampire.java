@@ -5,8 +5,8 @@ import static academy.mindswap.util.Messages.VAMPIRE_BITE;
 import static academy.mindswap.util.RandomGenerator.generateRandom;
 
 public class Vampire extends Monster {
-    private final float biteChance = 0.3f;
-    private final int healthRecovery = 10;
+    private final float BITE_CHANCE = 0.3f;
+    private final int HEALTH_RECOVERY = 10;
 
     public Vampire(int damage) {
         super(damage, VAMPIRE);
@@ -14,7 +14,7 @@ public class Vampire extends Monster {
 
     @Override
     public int attack() {
-        if (generateRandom(0, 1) <= biteChance) {
+        if (generateRandom(0, 1) <= BITE_CHANCE) {
             bite();
         }
 
@@ -22,7 +22,7 @@ public class Vampire extends Monster {
     }
 
     private void bite() {
-        if (getHealth() + healthRecovery >= 100) {
+        if (getHealth() + HEALTH_RECOVERY >= 100) {
             setHealth(100);
 
             System.out.printf(VAMPIRE_BITE, getType(), getHealth());
@@ -30,7 +30,7 @@ public class Vampire extends Monster {
             return;
         }
 
-        setHealth(getHealth() + healthRecovery);
+        setHealth(getHealth() + HEALTH_RECOVERY);
 
         System.out.printf(VAMPIRE_BITE, getType(), getHealth());
     }

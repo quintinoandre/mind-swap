@@ -18,13 +18,17 @@ public class Witch extends Supernatural implements Strikeable {
 
             setDead();
 
-            System.out.printf(MONSTER_IS_DEAD, "Witch");
+            System.out.printf(MONSTER_IS_DEAD, getClassName());
 
             return;
         }
 
         setHealth(getHealth() - damage / 2);
 
-        System.out.printf(MONSTER_DEFEND, "Witch", damage, getHealth());
+        System.out.printf(MONSTER_DEFEND, getClassName(), damage, getHealth());
+    }
+
+    public String getClassName() {
+        return this.getClass().getSimpleName();
     }
 }

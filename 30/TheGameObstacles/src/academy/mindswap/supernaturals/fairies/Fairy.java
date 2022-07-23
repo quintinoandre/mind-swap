@@ -10,6 +10,10 @@ public class Fairy extends Supernatural {
         super(damage);
     }
 
+    public String getClassName() {
+        return this.getClass().getSimpleName();
+    }
+
     @Override
     public void setHealth(int health) {
         System.out.printf(FAIRY_HEALTH);

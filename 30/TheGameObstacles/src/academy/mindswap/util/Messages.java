@@ -12,16 +12,19 @@ public final class Messages {
     public static final String MUMMY_UNROLL = "Mummy fails, unrolls and loses %d points of health.%n";
 
     public static final String CREATE_MONSTER = "%s's monster is %s.%n";
+    public static final String CREATE_SUPERNATURAL = "%s's supernatural is %s.%n";
 
     public static final String ALL_MONSTERS_DEAD = "%s's monsters are all dead.%n";
 
     public static final String CHOSEN_MONSTER = "%s chose a %s.%n";
+    public static final String CHOSEN_OBSTACLE = "%s chose a %s.%n";
     public static final String PLAYER_PICK_MONSTERS = "%n%s: %s pick your monsters!%n%n";
 
     public static final String GAME_BEGIN = "%n%s: The game begin!%n%n";
 
     public static final String PLAYER_ATTACKED = "%s: %s attacked!%n";
     public static final String PLAYER_DEFENDED = "%s: %s defended!%n";
+    public static final String GAME_ATTACKED = "%s attacked!%n";
     public static final String PLAYER_LOSE = "%n%s lost the game!";
 
     public static final String NEXT_ROUND = "%n%s: Next round!%n%n";
