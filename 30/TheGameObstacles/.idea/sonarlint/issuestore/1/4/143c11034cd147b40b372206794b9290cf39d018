@@ -1,0 +1,8 @@
+
+~	java:S116"bRename this field "MAX_CONSECUTIVE_ATTACKS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€á¸ô8Í’Œµ¢0
+y	java:S116"XRename this field "UNROLL_DAMAGE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°Ø²ªüÿÿÿÿ8ÒÆ‹µ¢0
+>
+java:S1170"!Make this final field static too.(€á¸ô8ÒÆ‹µ¢0
+C
+java:S1170"!Make this final field static too.(°Ø²ªüÿÿÿÿ8ÒÆ‹µ¢0
+Z	java:S106("9Replace this use of System.out or System.err by a logger.(½«Þœüÿÿÿÿ8ÙË’µ¢0
