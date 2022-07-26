@@ -1,0 +1,29 @@
+
+h
+java:S37760"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(Ÿ‹çÛ
+f
+java:S21477"DCombine this catch with the one at line 53, which has the same body.(ˆßÇ”ùÿÿÿÿ8¼þŽÏ£0
+N	java:S1066"9Replace this use of System.out or System.err by a logger.(ÉÐëš
+N	java:S1068"9Replace this use of System.out or System.err by a logger.(ÉÐëš
+N	java:S106:"9Replace this use of System.out or System.err by a logger.(ÉÐëš
+f
+java:S2147C"DCombine this catch with the one at line 65, which has the same body.(ˆßÇ”ùÿÿÿÿ8½þŽÏ£0
+N	java:S106B"9Replace this use of System.out or System.err by a logger.(ÉÐëš
+N	java:S106D"9Replace this use of System.out or System.err by a logger.(ÉÐëš
+U	java:S106F"9Replace this use of System.out or System.err by a logger.(ÉÐëš8Šù‰Ï£0
+t
+java:S3776L"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(âÈ¯¢þÿÿÿÿ8Þ”œÏ£0
+f
+java:S2147S"DCombine this catch with the one at line 81, which has the same body.(ˆßÇ”ùÿÿÿÿ8ß”œÏ£0
+U	java:S106R"9Replace this use of System.out or System.err by a logger.(ÉÐëš8à”œÏ£0
+U	java:S106T"9Replace this use of System.out or System.err by a logger.(ÉÐëš8ËµœÏ£0
+U	java:S106V"9Replace this use of System.out or System.err by a logger.(ÉÐëš8ðŽÎÏ£0
+f
+java:S2147_"DCombine this catch with the one at line 93, which has the same body.(ˆßÇ”ùÿÿÿÿ8ÊµœÏ£0
+U	java:S106^"9Replace this use of System.out or System.err by a logger.(ÉÐëš8ÙÎÏ£0
+U	java:S106`"9Replace this use of System.out or System.err by a logger.(ÉÐëš8¬æÏÏ£0
+U	java:S106b"9Replace this use of System.out or System.err by a logger.(ÉÐëš8÷˜ÐÏ£0
+n
+java:S6201‚"XReplace this instanceof check and cast with 'instanceof DonationLibrary donationlibrary'(…
+>
+java:S1068"(Remove this unused "name" private field.(Ú§×œ
