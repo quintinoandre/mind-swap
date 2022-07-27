@@ -1,0 +1,9 @@
+
+u	java:S116"`Rename this field "MIN_CLEANLINESS_LEVEL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«²ë
+7
+java:S1170"!Make this final field static too.(«²ë
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(Âé±ùÿÿÿÿ8Ú¸“Ô£0
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(Âé±ùÿÿÿÿ8ûÙ•Ô£0
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(Âé±ùÿÿÿÿ8Ûù•Ô£0
+Z	java:S106&"9Replace this use of System.out or System.err by a logger.(Âé±ùÿÿÿÿ8£ËúØ£0
+Z	java:S1060"9Replace this use of System.out or System.err by a logger.(Âé±ùÿÿÿÿ8­¶üØ£0
