@@ -19,8 +19,6 @@ p
 @src/academy/mindswap/exceptions/NotPaidHousekeeperException.java,5/5/55f227d219ef7ced8b3bfd5766c007c0d3c05558
 V
 &src/academy/mindswap/DivisionType.java,f/f/ffb66a3e8a7d645cf254ea8650081f0e8c3cb664
-O
-src/academy/mindswap/House.java,3/b/3bcecb80dafe86f493f945a94377fc54ce734061
 X
 (src/academy/mindswap/utils/Messages.java,6/b/6bd76f02947fa96f64374e37694c5026b85a33d3
 g
@@ -29,3 +27,5 @@ M
 src/academy/mindswap/Sim.java,3/9/394c490a19803a25e70e8b63577b7edc78350c04
 N
 src/academy/mindswap/Main.java,8/3/836af7b5aee694f51fbce5fe378baf1904b98af3
+O
+src/academy/mindswap/House.java,3/b/3bcecb80dafe86f493f945a94377fc54ce734061

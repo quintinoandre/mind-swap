@@ -1,0 +1,56 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="GrazieInspection" enabled="true" level="TYPO" enabled_by_default="true">
+      <scope name="All Changed Files" level="TYPO" enabled="true" />
+      <scope name="Open Files" level="TYPO" enabled="true" />
+      <scope name="Production" level="TYPO" enabled="true" />
+      <scope name="Project Files" level="TYPO" enabled="true" />
+      <scope name="Scratches and Consoles" level="TYPO" enabled="true" />
+      <scope name="Tests" level="TYPO" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="LanguageDetectionInspection" enabled="true" level="TYPO" enabled_by_default="true">
+      <scope name="All Changed Files" level="TYPO" enabled="true" />
+      <scope name="Open Files" level="TYPO" enabled="true" />
+      <scope name="Production" level="TYPO" enabled="true" />
+      <scope name="Project Files" level="TYPO" enabled="true" />
+      <scope name="Scratches and Consoles" level="TYPO" enabled="true" />
+      <scope name="Tests" level="TYPO" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="SpellCheckingInspection" enabled="true" level="TYPO" enabled_by_default="true">
+      <scope name="All Changed Files" level="TYPO" enabled="true">
+        <option name="processCode" value="true" />
+        <option name="processLiterals" value="true" />
+        <option name="processComments" value="true" />
+      </scope>
+      <scope name="Open Files" level="TYPO" enabled="true">
+        <option name="processCode" value="true" />
+        <option name="processLiterals" value="true" />
+        <option name="processComments" value="true" />
+      </scope>
+      <scope name="Production" level="TYPO" enabled="true">
+        <option name="processCode" value="true" />
+        <option name="processLiterals" value="true" />
+        <option name="processComments" value="true" />
+      </scope>
+      <scope name="Project Files" level="TYPO" enabled="true">
+        <option name="processCode" value="true" />
+        <option name="processLiterals" value="true" />
+        <option name="processComments" value="true" />
+      </scope>
+      <scope name="Scratches and Consoles" level="TYPO" enabled="true">
+        <option name="processCode" value="true" />
+        <option name="processLiterals" value="true" />
+        <option name="processComments" value="true" />
+      </scope>
+      <scope name="Tests" level="TYPO" enabled="true">
+        <option name="processCode" value="true" />
+        <option name="processLiterals" value="true" />
+        <option name="processComments" value="true" />
+      </scope>
+      <option name="processCode" value="true" />
+      <option name="processLiterals" value="true" />
+      <option name="processComments" value="true" />
+    </inspection_tool>
+  </profile>
+</component>
