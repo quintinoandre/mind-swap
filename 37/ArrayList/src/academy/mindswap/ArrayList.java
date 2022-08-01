@@ -4,29 +4,26 @@ import academy.mindswap.exceptions.NotExistingElementException;
 import academy.mindswap.exceptions.NotNullElementException;
 import academy.mindswap.logs.Logger;
 
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import static academy.mindswap.logs.LoggerType.ERROR;
 import static academy.mindswap.logs.LoggerType.SUCCESS;
 import static academy.mindswap.utils.Messages.*;
 
-public class ArrayList implements List {
-    private Object[] backbone;
+public class ArrayList<T> implements Iterable<T> {
+    private T[] backbone;
     private static final int ARRAY_LIST_MIN_SIZE = 10;
 
     private int numberOfElements;
 
     public ArrayList() {
-        backbone = new Object[ARRAY_LIST_MIN_SIZE];
+        backbone = (T[]) new Object[ARRAY_LIST_MIN_SIZE];
 
         numberOfElements = 0;
     }
 
     private void doubleArray() {
-        Object[] doubleArray = new Object[size() * 2];
+        T[] doubleArray = (T[]) new Object[size() * 2];
 
         for (int i = 0; i < size(); i++) {
             doubleArray[i] = backbone[i];
@@ -36,7 +33,7 @@ public class ArrayList implements List {
     }
 
     private void decreaseArraySizeByHalf() {
-        Object[] halfArray = new Object[size() / 2];
+        T[] halfArray = (T[]) new Object[size() / 2];
 
         for (int i = 0; i < numberOfElements; i++) {
             halfArray[i] = backbone[i];
@@ -45,18 +42,15 @@ public class ArrayList implements List {
         backbone = halfArray;
     }
 
-    @Override
     public int size() {
         return backbone.length;
     }
 
-    @Override
     public boolean isEmpty() {
         return numberOfElements == 0;
     }
 
-    @Override
-    public boolean contains(Object o) {
+    public boolean contains(T o) {
         if (o == null) {
             Logger.log(ERROR, "contains(Object o) - " + NO_NULL_ELEMENT);
 
@@ -78,14 +72,24 @@ public class ArrayList implements List {
         return false;
     }
 
-    @Override
     public Iterator iterator() {
-        return null;
+        return new Iterator() {
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < numberOfElements;
+            }
+
+            @Override
+            public Object next() {
+                return get(currentIndex++);
+            }
+        };
     }
 
-    @Override
-    public Object[] toArray() {
-        Object[] arrayToReturn = new Object[numberOfElements];
+    public T[] toArray() {
+        T[] arrayToReturn = (T[]) new Object[numberOfElements];
 
         for (int i = 0; i < numberOfElements; i++) {
             arrayToReturn[i] = backbone[i];
@@ -94,8 +98,7 @@ public class ArrayList implements List {
         return arrayToReturn;
     }
 
-    @Override
-    public boolean add(Object o) {
+    public boolean add(T o) {
         if (o == null) {
             Logger.log(ERROR, "add(Object o) - " + NO_NULL_ELEMENT);
 
@@ -115,8 +118,7 @@ public class ArrayList implements List {
         return true;
     }
 
-    @Override
-    public boolean remove(Object o) {
+    public boolean remove(T o) {
         if (o == null) {
             Logger.log(ERROR, "remove(Object o) - " + NO_NULL_ELEMENT);
 
@@ -160,31 +162,19 @@ public class ArrayList implements List {
         return true;
     }
 
-    @Override
-    public boolean addAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(int index, Collection c) {
-        return false;
-    }
-
-    @Override
     public void clear() {
         for (int i = 0; i < numberOfElements; i++) {
             backbone[i] = null;
         }
 
         if (backbone.length > ARRAY_LIST_MIN_SIZE) {
-            backbone = new Object[ARRAY_LIST_MIN_SIZE];
+            backbone = (T[]) new Object[ARRAY_LIST_MIN_SIZE];
         }
 
         numberOfElements = 0;
     }
 
-    @Override
-    public Object get(int index) throws NotExistingElementException {
+    public T get(int index) throws NotExistingElementException {
         if (index > numberOfElements - 1 || isEmpty()) {
             Logger.log(ERROR, "get(int index) - " + NOT_EXISTING_ELEMENT);
 
@@ -194,8 +184,7 @@ public class ArrayList implements List {
         return backbone[index];
     }
 
-    @Override
-    public Object set(int index, Object element) {
+    public T set(int index, T element) {
         if (element == null) {
             Logger.log(ERROR, "set(int index, Object element)" + NO_NULL_ELEMENT);
 
@@ -213,8 +202,7 @@ public class ArrayList implements List {
         return element;
     }
 
-    @Override
-    public void add(int index, Object element) {
+    public void add(int index, T element) {
         if (element == null) {
             Logger.log(ERROR, "add(int index, Object element) - " + NO_NULL_ELEMENT);
 
@@ -246,15 +234,14 @@ public class ArrayList implements List {
         Logger.log(SUCCESS, "add(int index, Object element) - " + NEW_ELEMENT_ADDED);
     }
 
-    @Override
-    public Object remove(int index) {
+    public T remove(int index) {
         if (index > numberOfElements - 1 || isEmpty()) {
             Logger.log(ERROR, "remove(int index) - " + NOT_EXISTING_ELEMENT);
 
             throw new NotExistingElementException();
         }
 
-        Object objToReturn = backbone[index];
+        T objToReturn = backbone[index];
 
         backbone[index] = null;
 
@@ -285,8 +272,7 @@ public class ArrayList implements List {
         return objToReturn;
     }
 
-    @Override
-    public int indexOf(Object o) {
+    public int indexOf(T o) {
         if (o == null) {
             Logger.log(ERROR, "indexOf(Object o) - " + NO_NULL_ELEMENT);
 
@@ -302,8 +288,7 @@ public class ArrayList implements List {
         return -1;
     }
 
-    @Override
-    public int lastIndexOf(Object o) {
+    public int lastIndexOf(T o) {
         if (o == null) {
             Logger.log(ERROR, "lastIndexOf(Object o) - " + NO_NULL_ELEMENT);
 
@@ -317,41 +302,6 @@ public class ArrayList implements List {
         }
 
         return -1;
-    }
-
-    @Override
-    public ListIterator listIterator() {
-        return null;
-    }
-
-    @Override
-    public ListIterator listIterator(int index) {
-        return null;
-    }
-
-    @Override
-    public List subList(int fromIndex, int toIndex) {
-        return null;
-    }
-
-    @Override
-    public boolean retainAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[0];
     }
 
     public int getNumberOfElements() {
