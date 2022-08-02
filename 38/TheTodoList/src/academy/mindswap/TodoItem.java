@@ -13,7 +13,7 @@ public class TodoItem implements Comparable<TodoItem> {
 
     @Override
     public int compareTo(TodoItem todoItem) {
-        if (IMPORTANCE == todoItem.IMPORTANCE) {
+        if (IMPORTANCE.equals(todoItem.IMPORTANCE)) {
             return PRIORITY < todoItem.PRIORITY ? -1 : 1;
         }
 

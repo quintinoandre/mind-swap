@@ -1,12 +1,13 @@
 package academy.mindswap;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 import static academy.mindswap.Importance.*;
 
 public class Main {
     public static void main(String[] args) {
-        PriorityQueue<TodoItem> queue = new PriorityQueue<>();
+        Queue<TodoItem> queue = new PriorityQueue<>();
 
         queue.add(new TodoItem(MEDIUM, 1, "Wash dishes"));
         queue.add(new TodoItem(LOW, 1, "Take the trash out"));
