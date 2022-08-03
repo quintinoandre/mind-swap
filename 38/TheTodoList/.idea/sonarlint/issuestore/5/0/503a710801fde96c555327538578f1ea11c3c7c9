@@ -1,0 +1,6 @@
+
+j	java:S116"URename this field "IMPORTANCE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”†Â”
+h	java:S116"SRename this field "PRIORITY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã‘§Ë
+k	java:S116"VRename this field "DESCRIPTION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ýªå¦
+o
+java:S1210"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(¸î©Î
