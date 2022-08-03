@@ -1,10 +1,10 @@
 package academy.mindswap;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import academy.mindswap.utils.Colors;
 
+import java.util.*;
+
+import static academy.mindswap.utils.Colors.RESET;
 import static academy.mindswap.utils.ReturnRepeatedCharacters.returnRepeatedCharacters;
 
 public class WordHistogram implements Iterable<String> {
@@ -16,11 +16,27 @@ public class WordHistogram implements Iterable<String> {
         map = new HashMap<>();
     }
 
-    public Map<String, Integer> analyseString(String stringToAnalyse) {
+    private Map<String, Integer> sortMapByValue(Map<String, Integer> map) {
+        List<Map.Entry<String, Integer>> list = new LinkedList<>(map.entrySet());
+
+        list.sort((o1, o2) -> (o2.getValue()).compareTo(o1.getValue()));
+
+        Map<String, Integer> m = new LinkedHashMap<>();
+
+        for (Map.Entry<String, Integer> item : list) {
+            m.put(item.getKey(), item.getValue());
+        }
+
+        return m;
+    }
+
+    public void analyseString(String stringToAnalyse) {
         map = new HashMap<>();
 
-        List<String> list = List.of(stringToAnalyse.toLowerCase().replaceAll("\\W\\s'", "")
-                .replaceAll("\\s+", " ")
+        List<String> list = List.of(stringToAnalyse.toLowerCase()
+                .replaceAll("[.,;]", "")
+                .trim()
+                .replaceAll(" +", " ")
                 .split(" "));
 
         for (String word : list) {
@@ -34,8 +50,6 @@ public class WordHistogram implements Iterable<String> {
 
             map.put(word, 1);
         }
-
-        return map;
     }
 
     public int get(String word) {
@@ -50,12 +64,21 @@ public class WordHistogram implements Iterable<String> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        Colors[] colors = Colors.values();
 
-        map.forEach((k, v) -> stringBuilder.append(k)
-                .append(returnRepeatedCharacters(" ", largestWordSize - k.length()))
-                .append(" : ")
-                .append(returnRepeatedCharacters("[]", v))
-                .append("\n"));
+        sortMapByValue(map).forEach((k, v) -> {
+            Colors randomColor = colors[(int) (Math.random() * colors.length - 1)];
+
+            stringBuilder.append(k)
+                    .append(returnRepeatedCharacters(" ", largestWordSize - k.length()))
+                    .append(" : ")
+                    .append("(")
+                    .append(v)
+                    .append(") ")
+                    .append(returnRepeatedCharacters(randomColor.getBackgroundColorCode() + " "
+                            + RESET.getBackgroundColorCode(), v))
+                    .append("\n");
+        });
 
         return stringBuilder.toString();
     }
