@@ -1,0 +1,47 @@
+
+`	java:S112$"FDefine and throw a dedicated exception instead of using a generic one.(ì¬ú øÿÿÿÿ
+`	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(ì¬ú øÿÿÿÿ
+g	java:S112J"FDefine and throw a dedicated exception instead of using a generic one.(ì¬ú øÿÿÿÿ8­–ñì¦0
+J
+java:S3740"/Provide the parametrized type for this generic.(Ò¬Å¶úÿÿÿÿ
+J
+java:S3740"/Provide the parametrized type for this generic.(Ò¬Å¶úÿÿÿÿ
+E
+java:S3740"/Provide the parametrized type for this generic.(ëšß
+E
+java:S3740"/Provide the parametrized type for this generic.(ëšß
+J
+java:S3740-"/Provide the parametrized type for this generic.(Ò¬Å¶úÿÿÿÿ
+J
+java:S3740-"/Provide the parametrized type for this generic.(Ò¬Å¶úÿÿÿÿ
+E
+java:S3740."/Provide the parametrized type for this generic.(ëšß
+E
+java:S3740."/Provide the parametrized type for this generic.(ëšß
+J
+java:S3740@"/Provide the parametrized type for this generic.(Ò¬Å¶úÿÿÿÿ
+J
+java:S3740@"/Provide the parametrized type for this generic.(Ò¬Å¶úÿÿÿÿ
+L
+java:S3740A"/Provide the parametrized type for this generic.(ëšß8®–ñì¦0
+L
+java:S3740A"/Provide the parametrized type for this generic.(ëšß8®–ñì¦0
+Q
+java:S3740Q"/Provide the parametrized type for this generic.(« ‡“şÿÿÿÿ8®–ñì¦0
+Q
+java:S3740Z"/Provide the parametrized type for this generic.(í¬«Áøÿÿÿÿ8®–ñì¦0
+Ÿ
+java:S1192$"}Define a constant instead of duplicating this literal "The range iterator doesn't return the right number of values" 3 times.(ì¬ú øÿÿÿÿ8¯–ñì¦0
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§›®Ä8®Š»ì¦0
+j	java:S100("NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆÍŠş8°Š»ì¦0
+`
+java:S11556">Use isEmpty() to check whether the collection is empty or not.(á‡Ÿüşÿÿÿÿ8±Š»ì¦0
+o	java:S100;"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆáõëøÿÿÿÿ8Â»ì¦0
+`
+java:S1155I">Use isEmpty() to check whether the collection is empty or not.(á‡Ÿüşÿÿÿÿ8½–ñì¦0
+j	java:S100N"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰·ã8±Š»ì¦0
+8
+java:S3626S"Remove this redundant jump.(ûÁİ…8±Š»ì¦0
+o	java:S100W"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇÔĞ¶ùÿÿÿÿ8±Š»ì¦0
+8
+java:S3626\"Remove this redundant jump.(ûÁİ…8±Š»ì¦0
