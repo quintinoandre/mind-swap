@@ -1,4 +1,0 @@
-
-r	java:S116"^Rename this field "LIMIT_BATTERY_LEVEL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(אשרZ
-6
-java:S1170"!Make this final field static too.(אשרZ
