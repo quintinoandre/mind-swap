@@ -22,15 +22,11 @@ public class Main {
         "Worked hard all my trash lifetime, no help from my trash friends\n" +
         "So Lord, won't you buy me a trash Mercedes Benz";
 
-    System.out.println("----------------------------------------------------------------");
+    System.out.println("----------------------------------------------------");
 
     System.out.println(Arrays.stream(prayer2.split(" "))
         .filter(word -> !word.equals("trash"))
         .map(word -> word.toUpperCase())
-        .reduce("", (acc, element) -> {
-          String joiner = acc.equals("") ? "" : " ";
-
-          return acc + joiner + element;
-        }));
+        .reduce("", (acc, element) -> acc.concat(element).concat(" ")));
   }
 }
