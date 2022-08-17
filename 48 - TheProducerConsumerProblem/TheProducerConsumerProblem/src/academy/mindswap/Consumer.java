@@ -20,7 +20,7 @@ public class Consumer implements Runnable {
 
         eatenPlates++;
 
-        System.out.println(container);
+        System.out.println(container + " - " + Thread.currentThread().getName());
       }
 
       try {

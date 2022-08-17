@@ -20,7 +20,7 @@ public class Producer implements Runnable {
 
         cookedPlates++;
 
-        System.out.println(container);
+        System.out.println(container + " - " + Thread.currentThread().getName());
       }
 
       try {
