@@ -8,8 +8,8 @@ public class Main {
     Container<Integer> queue = new Container<>(100);
 
     Producer p1 = new Producer(queue, 50);
-    Thread t1 = new Thread(p1);
-    t1.setName("p1");
+    Thread t1 = new Thread(p1, "p1");
+    //t1.setName("p1");
 
     Producer p2 = new Producer(queue, 50);
     Thread t2 = new Thread(p2);
