@@ -5,6 +5,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +20,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 import static academy.mindswap.school.exceptions.authentication.AuthenticationExceptionMessages.CANNOT_SET_SECURITY_CONTEXT;
+import static academy.mindswap.school.exceptions.authentication.AuthenticationExceptionMessages.UNAUTHORIZED;
 
 /**
  * the JwtRequestFilter extends the Spring Web Filter OncePerRequestFilter class
@@ -34,6 +37,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
     private final JwtUtil jwtUtil;
 
+    @Value("${jwt.allowForRefreshTokenExpirationDateInMs}")
+    private int allowForRefreshTokenExpirationDateInMs;
+
     @Autowired
     public JwtAuthenticationFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
@@ -43,7 +49,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String bearerToken = request.getHeader("Authorization");
 
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-
             return bearerToken.substring(7);
         }
 
@@ -66,11 +71,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        try {
-            // JWT Token is in the form "Bearer token"
-            // Remove Bearer word and get only the Token
-            String jwtToken = extractJwtFromRequest(request);
+        // JWT Token is in the form "Bearer token"
+        // Remove Bearer word and get only the Token
+        String jwtToken = extractJwtFromRequest(request);
 
+        try {
             // if token is valid configure Spring Security to manually set authentication
             if (StringUtils.hasText(jwtToken) && jwtUtil.validateToken(jwtToken)) {
                 UserDetails userDetails = new User(jwtUtil.getUsernameFromToken(jwtToken), "",
@@ -92,10 +97,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String requestURL = request.getRequestURL().toString();
 
             // allow for Refresh Token creation if following conditions are true
-            if (isRefreshToken != null && isRefreshToken.equals("true") && requestURL.contains("refreshtoken")) {
+            if (isRefreshToken != null && isRefreshToken.equals("true") && requestURL.contains("refreshtoken") &&
+                    !exception.getClaims().getExpiration().before(new Date(new Date().getTime() -
+                            allowForRefreshTokenExpirationDateInMs))) {
                 allowForRefreshToken(exception, request);
             } else {
                 request.setAttribute("exception", exception);
+
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, UNAUTHORIZED);
+
+                return;
             }
         } catch (
                 BadCredentialsException exception) {
