@@ -6,6 +6,12 @@ import academy.mindswap.school.exceptions.authentication.AuthenticationBadReques
 import academy.mindswap.school.services.JwtUserDetailsService;
 import academy.mindswap.school.utils.JwtUtil;
 import io.jsonwebtoken.impl.DefaultClaims;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +36,8 @@ import static academy.mindswap.school.utils.PrintValidationErrors.printValidatio
  * using Spring Authentication Manager we authenticate the username and password
  * if the credentials are valid, a JWT token is created using the JWTTokenUtil and provided to the client
  */
+@Tag(name = "Authentication", description = "The Authentication API. Contains all the operations to generate a JWT" +
+        " token and a refresh JWT token")
 @RestController
 @RequestMapping("api/v1")
 @CrossOrigin
@@ -56,6 +64,8 @@ public class JwtAuthenticationControllerImpl implements JwtAuthenticationControl
         }
     }
 
+    @Operation(summary = "Generate JWT token", description = "Generate JWT token")
+    @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = JwtResponseDto.class)))
     @Override
     @PostMapping("/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@Valid @RequestBody JwtRequestDto authenticationRequest,
@@ -77,9 +87,12 @@ public class JwtAuthenticationControllerImpl implements JwtAuthenticationControl
         return new ResponseEntity<>(new JwtResponseDto(token), HttpStatus.OK);
     }
 
+    @Operation(summary = "Generate refresh JWT token", description = "Generate refresh JWT token")
+    @SecurityRequirement(name = "bearerAuth")
     @Override
     @GetMapping("/refreshtoken")
-    public ResponseEntity<?> refreshtoken(HttpServletRequest request) {
+    public ResponseEntity<JwtResponseDto> createRefreshToken(@RequestHeader(value = "isRefreshToken", required = true,
+            defaultValue = "true") String headerStr, HttpServletRequest request) {
         if (request == null) {
             throw new AuthenticationBadRequestException(REQUEST_NULL);
         }

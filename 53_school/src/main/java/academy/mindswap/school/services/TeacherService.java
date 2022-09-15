@@ -19,6 +19,7 @@ public interface TeacherService {
 
     CarDto saveCar(SaveCarDto car, Long teacherId);
 
+    //@LogExecutionTime
     TeacherDto findTeacherById(Long id);
 
     TeacherDto findTeacherByCarId(Long id);

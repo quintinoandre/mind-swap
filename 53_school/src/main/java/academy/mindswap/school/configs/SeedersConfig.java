@@ -20,7 +20,7 @@ import java.time.Month;
 import java.util.List;
 
 @Configuration
-public class Seeders {
+public class SeedersConfig {
     @Bean
     CommandLineRunner commandLineRunner(TeacherRepository teacherRepository, CarRepository carRepository,
                                         ShopRepository shopRepository, RoleRepository roleRepository,
