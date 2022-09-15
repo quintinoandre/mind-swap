@@ -5,8 +5,9 @@ public final class AuthenticationExceptionMessages {
     }
 
     public static final String AUTHENTICATION_NULL = "object authentication is null";
+    public static final String REQUEST_NULL = "object request is null";
     public static final String UNAUTHORIZED = "Unauthorized";
-    public static final String UNABLE_GET_JWT = "Unable to get JWT Token";
-    public static final String JWT_EXPIRED = "JWT Token has expired";
-    public static final String JWT_WITHOUT_BEARER = "JWT Token does not begin with Bearer String";
+    public static final String CANNOT_SET_SECURITY_CONTEXT = "Cannot set the Security Context";
+    public static final String USER_DISABLED = "USER_DISABLED";
+    public static final String INVALID_CREDENTIALS = "INVALID_CREDENTIALS";
 }

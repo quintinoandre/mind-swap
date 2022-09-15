@@ -1,10 +1,10 @@
-package academy.mindswap.school.configs;
+package academy.mindswap.school.utils;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -12,25 +12,29 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+
+import static academy.mindswap.school.exceptions.authentication.AuthenticationExceptionMessages.INVALID_CREDENTIALS;
 
 /**
  * the JwtTokenUtil is responsible for performing JWT operations like creation and validation
  * it makes use of the io.jsonwebtoken.Jwts for achieving this
  */
 @Component
-public class JwtTokenUtil implements Serializable {
+public class JwtUtil implements Serializable {
     @Serial
     private static final long serialVersionUID = -2550185165626007488L;
-
-    //public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
     @Value("${jwt.secret}")
     private String secret;
 
     @Value("${jwt.expirationDateInMs}")
-    private Long jwtTokenValidity;
+    private int jwtExpirationInMs;
+
+    @Value("${jwt.refreshExpirationDateInMs}")
+    private int refreshExpirationDateInMs;
 
     /**
      * for retrieving any information from token we will need the secret key
@@ -81,8 +85,17 @@ public class JwtTokenUtil implements Serializable {
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                //.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-                .setExpiration(new Date(System.currentTimeMillis() + jwtTokenValidity))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs))
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
+    }
+
+    public String doGenerateRefreshToken(Map<String, Object> claims, String subject) {
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(subject)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + refreshExpirationDateInMs))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
@@ -101,9 +114,24 @@ public class JwtTokenUtil implements Serializable {
     /**
      * validate token
      */
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = getUsernameFromToken(token);
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
 
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+            return true;
+        } catch (SignatureException | MalformedJwtException | UnsupportedJwtException |
+                 IllegalArgumentException exception) {
+            throw new BadCredentialsException(INVALID_CREDENTIALS, exception);
+        } catch (ExpiredJwtException exception) {
+            throw exception;
+        }
+    }
+
+    public List<SimpleGrantedAuthority> getRolesFromToken(String token) {
+        Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+
+        List<String> roles = (List<String>) claims.get("roles");
+
+        return roles.stream().map(SimpleGrantedAuthority::new).toList();
     }
 }
