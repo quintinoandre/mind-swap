@@ -48,6 +48,8 @@ public class Teacher {
     @ToString.Exclude
     private List<Shop> shops;
 
-    @ManyToMany(mappedBy = "teachers", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "teachers")
+    @JsonIgnore
+    @ToString.Exclude
     private List<Role> roles;
 }

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import static academy.mindswap.school.exceptions.authentication.AuthenticationExceptionMessages.INVALID_CREDENTIALS;
+import static academy.mindswap.school.exceptions.authentication.JwtAuthenticationExceptionMessages.INVALID_CREDENTIALS;
 
 /**
  * the JwtTokenUtil is responsible for performing JWT operations like creation and validation

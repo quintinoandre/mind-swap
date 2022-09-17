@@ -1,9 +1,9 @@
 package academy.mindswap.school.controllers;
 
-import academy.mindswap.school.commands.jwt.JwtRequestDto;
-import academy.mindswap.school.commands.jwt.JwtResponseDto;
-import academy.mindswap.school.exceptions.authentication.AuthenticationBadRequestException;
-import academy.mindswap.school.services.JwtUserDetailsService;
+import academy.mindswap.school.commands.jwtAuthentication.JwtRequestDto;
+import academy.mindswap.school.commands.jwtAuthentication.JwtResponseDto;
+import academy.mindswap.school.exceptions.authentication.JwtAuthenticationBadRequestException;
+import academy.mindswap.school.services.CustomUserDetailsService;
 import academy.mindswap.school.utils.JwtUtil;
 import io.jsonwebtoken.impl.DefaultClaims;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,7 +28,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
-import static academy.mindswap.school.exceptions.authentication.AuthenticationExceptionMessages.*;
+import static academy.mindswap.school.exceptions.authentication.JwtAuthenticationExceptionMessages.*;
 import static academy.mindswap.school.utils.PrintValidationErrors.printValidationErrors;
 
 /**
@@ -44,14 +44,14 @@ import static academy.mindswap.school.utils.PrintValidationErrors.printValidatio
 public class JwtAuthenticationControllerImpl implements JwtAuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
-    private final JwtUserDetailsService jwtUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     public JwtAuthenticationControllerImpl(AuthenticationManager authenticationManager, JwtUtil jwtUtil,
-                                           JwtUserDetailsService jwtUserDetailsService) {
+                                           CustomUserDetailsService customUserDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
-        this.jwtUserDetailsService = jwtUserDetailsService;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     private void authenticate(String username, String password) throws Exception {
@@ -71,7 +71,7 @@ public class JwtAuthenticationControllerImpl implements JwtAuthenticationControl
     public ResponseEntity<?> createAuthenticationToken(@Valid @RequestBody JwtRequestDto authenticationRequest,
                                                        BindingResult bindingResult) throws Exception {
         if (authenticationRequest == null) {
-            throw new AuthenticationBadRequestException(AUTHENTICATION_NULL);
+            throw new JwtAuthenticationBadRequestException(AUTHENTICATION_NULL);
         }
 
         if (bindingResult.hasErrors()) {
@@ -80,7 +80,7 @@ public class JwtAuthenticationControllerImpl implements JwtAuthenticationControl
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtUtil.generateToken(userDetails);
 
@@ -94,7 +94,7 @@ public class JwtAuthenticationControllerImpl implements JwtAuthenticationControl
     public ResponseEntity<JwtResponseDto> createRefreshToken(@RequestHeader(value = "isRefreshToken", required = true,
             defaultValue = "true") String headerStr, HttpServletRequest request) {
         if (request == null) {
-            throw new AuthenticationBadRequestException(REQUEST_NULL);
+            throw new JwtAuthenticationBadRequestException(REQUEST_NULL);
         }
 
         // from the HttpRequest get the claims

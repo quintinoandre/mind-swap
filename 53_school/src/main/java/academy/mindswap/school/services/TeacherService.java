@@ -15,6 +15,8 @@ public interface TeacherService {
 
     Teacher findByEmail(String email);
 
+    Teacher findByEmailWithRoles(String email);
+
     TeacherDto saveTeacher(SaveTeacherDto teacher);
 
     CarDto saveCar(SaveCarDto car, Long teacherId);

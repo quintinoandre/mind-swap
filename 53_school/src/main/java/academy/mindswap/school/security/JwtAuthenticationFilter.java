@@ -1,4 +1,4 @@
-package academy.mindswap.school.configs;
+package academy.mindswap.school.security;
 
 import academy.mindswap.school.utils.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -22,14 +22,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-import static academy.mindswap.school.exceptions.authentication.AuthenticationExceptionMessages.CANNOT_SET_SECURITY_CONTEXT;
-import static academy.mindswap.school.exceptions.authentication.AuthenticationExceptionMessages.UNAUTHORIZED;
+import static academy.mindswap.school.exceptions.authentication.JwtAuthenticationExceptionMessages.CANNOT_SET_SECURITY_CONTEXT;
+import static academy.mindswap.school.exceptions.authentication.JwtAuthenticationExceptionMessages.UNAUTHORIZED;
 
 /**
  * the JwtRequestFilter extends the Spring Web Filter OncePerRequestFilter class
  * for any incoming request this Filter class gets executed
  * it checks if the request has a valid JWT token
- * ff it has a valid JWT Token then it sets the Authentication in the context, to specify that the current user is
+ * if it has a valid JWT Token then it sets the Authentication in the context, to specify that the current user is
  * authenticated
  */
 @Component

@@ -1,4 +1,4 @@
-package academy.mindswap.school.commands.jwt;
+package academy.mindswap.school.commands.jwtAuthentication;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serial;

@@ -1,7 +1,7 @@
 package academy.mindswap.school.exceptions.authentication;
 
-public final class AuthenticationExceptionMessages {
-    private AuthenticationExceptionMessages() {
+public final class JwtAuthenticationExceptionMessages {
+    private JwtAuthenticationExceptionMessages() {
     }
 
     public static final String AUTHENTICATION_NULL = "object authentication is null";

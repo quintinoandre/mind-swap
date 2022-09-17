@@ -75,12 +75,12 @@ public class SeedersConfig {
             shopRepository.save(shop);
 
             Role roleAdmin = Role.builder()
-                    .type(RoleTypes.ROLE_ADMIN.toString())
+                    .type(RoleTypes.ADMIN.toString())
                     .teachers(List.of(teacher1WithId))
                     .build();
 
             Role roleUser = Role.builder()
-                    .type(RoleTypes.ROLE_USER.toString())
+                    .type(RoleTypes.USER.toString())
                     .teachers(List.of(teacher1WithId, teacher2WithId))
                     .build();
 

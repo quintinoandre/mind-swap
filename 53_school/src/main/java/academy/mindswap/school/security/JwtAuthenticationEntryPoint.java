@@ -1,4 +1,4 @@
-package academy.mindswap.school.configs;
+package academy.mindswap.school.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.io.Serial;
 import java.io.Serializable;
 
-import static academy.mindswap.school.exceptions.authentication.AuthenticationExceptionMessages.UNAUTHORIZED;
-
+import static academy.mindswap.school.exceptions.authentication.JwtAuthenticationExceptionMessages.UNAUTHORIZED;
 
 /**
  * this class will extend Spring's AuthenticationEntryPoint class and override its method commence. It rejects every

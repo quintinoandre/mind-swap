@@ -73,6 +73,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Teacher findByEmailWithRoles(String email) {
+        return teacherRepository.findByEmailWithRoles(email).orElseThrow(TeacherNotFoundException::new);
+    }
+    
+    @Override
     public TeacherDto saveTeacher(SaveTeacherDto teacher) {
         Teacher teacherEntity = TeacherConverter.convertSaveTeacherDtoToEntity(teacher);
 

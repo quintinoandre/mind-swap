@@ -17,19 +17,19 @@ import java.util.ArrayList;
  * also the password for a user is stored in encrypted format using BCrypt
  */
 @Service
-public class JwtUserDetailsServiceImpl implements JwtUserDetailsService {
+public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     private final TeacherService teacherService;
 
     @Autowired
-    public JwtUserDetailsServiceImpl(TeacherService teacherService) {
+    public CustomUserDetailsServiceImpl(TeacherService teacherService) {
         this.teacherService = teacherService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) {
-        Teacher teacher = teacherService.findByEmail(email);
+        Teacher teacher = teacherService.findByEmailWithRoles(email);
 
         return new User(teacher.getEmail(), teacher.getPassword(), new ArrayList<>(teacher.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getType())).toList()));
+                .map(role -> new SimpleGrantedAuthority("ROLE_".concat(role.getType()))).toList()));
     }
 }

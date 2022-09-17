@@ -1,7 +1,7 @@
 package academy.mindswap.school.controllers;
 
-import academy.mindswap.school.commands.jwt.JwtRequestDto;
-import academy.mindswap.school.commands.jwt.JwtResponseDto;
+import academy.mindswap.school.commands.jwtAuthentication.JwtRequestDto;
+import academy.mindswap.school.commands.jwtAuthentication.JwtResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
