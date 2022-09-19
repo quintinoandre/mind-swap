@@ -27,9 +27,11 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) {
+        final String ROLE_PREFIX = "ROLE_";
+
         Teacher teacher = teacherService.findByEmailWithRoles(email);
 
         return new User(teacher.getEmail(), teacher.getPassword(), new ArrayList<>(teacher.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_".concat(role.getType()))).toList()));
+                .map(role -> new SimpleGrantedAuthority(ROLE_PREFIX.concat(role.getType()))).toList()));
     }
 }

@@ -42,6 +42,8 @@ import static academy.mindswap.school.utils.PrintValidationErrors.printValidatio
 @RequestMapping("api/v1")
 @CrossOrigin
 public class JwtAuthenticationControllerImpl implements JwtAuthenticationController {
+    private static final String IS_REFRESH_TOKEN = "isRefreshToken";
+
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final CustomUserDetailsService customUserDetailsService;
@@ -91,18 +93,21 @@ public class JwtAuthenticationControllerImpl implements JwtAuthenticationControl
     @SecurityRequirement(name = "bearerAuth")
     @Override
     @GetMapping("/refreshtoken")
-    public ResponseEntity<JwtResponseDto> createRefreshToken(@RequestHeader(value = "isRefreshToken", required = true,
+    public ResponseEntity<JwtResponseDto> createRefreshToken(@RequestHeader(value = IS_REFRESH_TOKEN, required = true,
             defaultValue = "true") String headerStr, HttpServletRequest request) {
         if (request == null) {
             throw new JwtAuthenticationBadRequestException(REQUEST_NULL);
         }
 
+        final String CLAIMS = "claims";
+        final String SUB = "sub";
+
         // from the HttpRequest get the claims
-        DefaultClaims claims = (DefaultClaims) request.getAttribute("claims");
+        DefaultClaims claims = (DefaultClaims) request.getAttribute(CLAIMS);
 
         Map<String, Object> expectedMap = new HashMap<>(claims);
 
-        String token = jwtUtil.doGenerateRefreshToken(expectedMap, expectedMap.get("sub").toString());
+        String token = jwtUtil.doGenerateRefreshToken(expectedMap, expectedMap.get(SUB).toString());
 
         return new ResponseEntity<>(new JwtResponseDto(token), HttpStatus.OK);
     }

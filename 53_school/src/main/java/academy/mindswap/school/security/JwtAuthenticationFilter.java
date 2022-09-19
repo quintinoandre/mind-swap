@@ -24,6 +24,7 @@ import java.util.Date;
 
 import static academy.mindswap.school.exceptions.authentication.JwtAuthenticationExceptionMessages.CANNOT_SET_SECURITY_CONTEXT;
 import static academy.mindswap.school.exceptions.authentication.JwtAuthenticationExceptionMessages.UNAUTHORIZED;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 /**
  * the JwtRequestFilter extends the Spring Web Filter OncePerRequestFilter class
@@ -35,10 +36,11 @@ import static academy.mindswap.school.exceptions.authentication.JwtAuthenticatio
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
-    private final JwtUtil jwtUtil;
 
     @Value("${jwt.allowForRefreshTokenExpirationDateInMs}")
     private int allowForRefreshTokenExpirationDateInMs;
+
+    private final JwtUtil jwtUtil;
 
     @Autowired
     public JwtAuthenticationFilter(JwtUtil jwtUtil) {
@@ -46,16 +48,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String extractJwtFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
+        String bearerToken = request.getHeader(AUTHORIZATION);
 
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
+        final String BEARER_PREFIX = "Bearer ";
+
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
+            return bearerToken.substring(BEARER_PREFIX.length());
         }
 
         return null;
     }
 
     private void allowForRefreshToken(ExpiredJwtException exception, HttpServletRequest request) {
+        final String CLAIMS = "claims";
+
         // create a UsernamePasswordAuthenticationToken with null values
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                 new UsernamePasswordAuthenticationToken(null, null, null);
@@ -65,12 +71,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
         // set the claims so that in controller we will be using it to create new JWT
-        request.setAttribute("claims", exception.getClaims());
+        request.setAttribute(CLAIMS, exception.getClaims());
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
+        final String EXCEPTION = "exception";
+
         // JWT Token is in the form "Bearer token"
         // Remove Bearer word and get only the Token
         String jwtToken = extractJwtFromRequest(request);
@@ -92,17 +100,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 LOGGER.error(CANNOT_SET_SECURITY_CONTEXT);
             }
         } catch (ExpiredJwtException exception) {
-            String isRefreshToken = request.getHeader("isRefreshToken");
+            final String IS_REFRESH_TOKEN = "isRefreshToken";
+            final String REFRESH_TOKEN = "refreshtoken";
+            final String TRUE = "true";
+
+            String isRefreshToken = request.getHeader(IS_REFRESH_TOKEN);
 
             String requestURL = request.getRequestURL().toString();
 
             // allow for Refresh Token creation if following conditions are true
-            if (isRefreshToken != null && isRefreshToken.equals("true") && requestURL.contains("refreshtoken") &&
+            if (isRefreshToken != null && isRefreshToken.equals(TRUE) && requestURL.contains(REFRESH_TOKEN) &&
                     !exception.getClaims().getExpiration().before(new Date(new Date().getTime() -
                             allowForRefreshTokenExpirationDateInMs))) {
                 allowForRefreshToken(exception, request);
             } else {
-                request.setAttribute("exception", exception);
+                request.setAttribute(EXCEPTION, exception);
 
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, UNAUTHORIZED);
 
@@ -110,7 +122,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         } catch (
                 BadCredentialsException exception) {
-            request.setAttribute("exception", exception);
+            request.setAttribute(EXCEPTION, exception);
         } catch (
                 Exception exception) {
             LOGGER.error(exception.toString());

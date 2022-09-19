@@ -24,6 +24,8 @@ import static academy.mindswap.school.exceptions.authentication.JwtAuthenticatio
  */
 @Component
 public class JwtUtil implements Serializable {
+    private static final String ROLES = "roles";
+
     @Serial
     private static final long serialVersionUID = -2550185165626007488L;
 
@@ -106,7 +108,7 @@ public class JwtUtil implements Serializable {
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
 
-        claims.put("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList());
+        claims.put(ROLES, userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList());
 
         return doGenerateToken(claims, userDetails.getUsername());
     }
@@ -130,7 +132,7 @@ public class JwtUtil implements Serializable {
     public List<SimpleGrantedAuthority> getRolesFromToken(String token) {
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 
-        List<String> roles = (List<String>) claims.get("roles");
+        List<String> roles = (List<String>) claims.get(ROLES);
 
         return roles.stream().map(SimpleGrantedAuthority::new).toList();
     }
