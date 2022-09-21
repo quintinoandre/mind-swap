@@ -1,0 +1,30 @@
+#ex. 8080
+server.port=
+#ex. always
+server.error.include-message=
+#ex. admin
+spring.data.mongodb.authentication-database=
+#ex. root
+spring.data.mongodb.username=
+#ex. password
+spring.data.mongodb.password=
+#ex. school
+spring.data.mongodb.database=
+#ex. 27017
+spring.data.mongodb.port=
+#ex. localhost
+spring.data.mongodb.host=
+#ex. true
+spring.data.mongodb.auto-index-creation=
+#ex. P3#u1kFCtt1@ufG1EjTHsnOuzlTN6l$LWs@g4jyG
+jwt.secret=
+#ex. 0 (milliseconds)
+jwt.expirationDateInMs=
+#ex. 10000 (milliseconds)
+jwt.refreshExpirationDateInMs=
+#ex. 30000 (milliseconds)
+jwt.allowForRefreshTokenExpirationDateInMs=
+#ex. method
+springdoc.swagger-ui.operationsSorter=
+#ex. /docs
+springdoc.swagger-ui.path=
