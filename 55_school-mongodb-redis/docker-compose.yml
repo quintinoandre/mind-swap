@@ -20,6 +20,10 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
 volumes:
   data: { }
 networks:

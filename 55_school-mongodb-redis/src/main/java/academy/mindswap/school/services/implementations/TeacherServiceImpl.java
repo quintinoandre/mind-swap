@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +51,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @CacheEvict(value = "teachers", allEntries = true)
     public TeacherDto save(SaveTeacherDto teacher) {
         Teacher teacherEntity = TeacherConverter.convertSaveTeacherDtoToEntity(teacher);
 
@@ -62,11 +65,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Cacheable(value = "teachers", key = "#id.concat('-cars')")
     public List<Car> findCarsById(String id) {
         return teacherRepository.findById(id).orElseThrow(TeacherNotFoundException::new).getCars();
     }
 
     @Override
+    @Cacheable(value = "teachers", key = "'cars'")
     public List<Car> findAllCars() {
         List<Car> cars = new LinkedList<>();
 
@@ -77,6 +82,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     //@LogExecutionTime
     @Override
+    @Cacheable(value = "teachers", key = "#id")
     public TeacherDto findById(String id) {
         Teacher teacherEntity = findTeacher(id);
 
@@ -84,6 +90,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Cacheable(value = "teachers")
     public List<TeacherDto> findAll() {
         List<Teacher> teachersEntities = teacherRepository.findAll();
 
@@ -95,6 +102,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @CacheEvict(value = "teachers", allEntries = true)
     public TeacherDto assignRoles(String id, RolesDto rolesDto) {
         Teacher updatedTeacher = findTeacher(id);
 
@@ -106,6 +114,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @CacheEvict(value = "teachers", allEntries = true)
     public TeacherDto update(String id, UpdateTeacherDto teacher) {
         Teacher teacherEntity = TeacherConverter.convertUpdateTeacherDtoToEntity(teacher);
 
@@ -139,6 +148,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @CacheEvict(value = "teachers", allEntries = true)
     public void delete(String id) {
         verifyTeacherExists(id);
 
@@ -159,11 +169,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Cacheable(value = "teachers", key = "#id")
     public Teacher findTeacher(String id) {
         return teacherRepository.findById(id).orElseThrow(TeacherNotFoundException::new);
     }
 
     @Override
+    @Cacheable(value = "teachers", key = "#email")
     public Teacher findByEmail(String email) {
         return teacherRepository.findByEmail(email).orElseThrow(TeacherNotFoundException::new);
     }

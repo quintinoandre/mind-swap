@@ -28,3 +28,11 @@ jwt.allowForRefreshTokenExpirationDateInMs=
 springdoc.swagger-ui.operationsSorter=
 #ex. /docs
 springdoc.swagger-ui.path=
+#ex. redis
+spring.cache.type=
+#ex. localhost
+spring.redis.host=
+#ex. 6379
+spring.redis.port=
+#ex. TRACE
+logging.level.org.springframework.cache=

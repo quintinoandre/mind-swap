@@ -21,6 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -54,6 +56,7 @@ public class ShopServiceImpl implements ShopService {
         throw new ShopNotFoundException();
     }
 
+    @Cacheable(value = "shops", key = "#id")
     private Shop findShop(String id) {
         return shopRepository.findById(id).orElseThrow(ShopNotFoundException::new);
     }
@@ -67,6 +70,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @CacheEvict(value = "shops", allEntries = true)
     public ShopDto save(SaveShopDto shop) {
         Shop shopEntity = ShopConverter.convertSaveShopDtoToEntity(shop);
 
@@ -78,6 +82,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @Cacheable(value = "shops", key = "#id.concat('-shops')")
     public List<ShopDto> findByTeacherId(String id) {
         List<Shop> shopsEntities = shopRepository.findByTeachersIds(id);
 
@@ -89,6 +94,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @Cacheable(value = "shops", key = "#id.concat('-teachers')")
     public List<TeacherDto> findTeachersByShopId(String id) {
         List<String> teachersIds = shopRepository.findById(id).orElseThrow(ShopNotFoundException::new)
                 .getTeachersIds();
@@ -105,11 +111,13 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @Cacheable(value = "shops", key = "#id")
     public ShopDto findById(String id) {
         return ShopConverter.convertToDto(findShop(id));
     }
 
     @Override
+    @Cacheable(value = "shops")
     public List<ShopDto> findAll() {
         List<Shop> shopsEntities = shopRepository.findAll();
 
@@ -121,6 +129,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @CacheEvict(value = "shops", allEntries = true)
     public ShopDto assignTeacher(String id, String teacherId) {
         teacherService.verifyTeacherExists(teacherId);
 
@@ -146,6 +155,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @CacheEvict(value = "shops", allEntries = true)
     public ShopDto update(String id, UpdateShopDto shop) {
         Shop shopEntity = ShopConverter.convertUpdateShopDtoToEntity(shop);
 
@@ -165,6 +175,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @CacheEvict(value = "shops", allEntries = true)
     public ShopDto deleteTeacher(String id, String teacherId) {
         teacherService.verifyTeacherExists(teacherId);
 
@@ -185,6 +196,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @CacheEvict(value = "shops", allEntries = true)
     public void delete(String id) {
         verifyShopExists(id);
 

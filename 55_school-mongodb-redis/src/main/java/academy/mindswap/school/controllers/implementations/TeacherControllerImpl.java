@@ -187,7 +187,7 @@ public class TeacherControllerImpl implements TeacherController {
     }
 
 
-    @Operation(summary = "Delete a teacher by id", description = "Delete a teacher by id")
+    @Operation(summary = "Delete a teacher by id (⚠️ only admin users)", description = "Delete a teacher by id")
     @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true)))
     @Override
     @DeleteMapping("/{id}")
