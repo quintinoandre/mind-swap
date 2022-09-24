@@ -7,14 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TeacherRepository extends MongoRepository<Teacher, Long> {
-    Optional<Teacher> findById(String id);
-
+public interface TeacherRepository extends MongoRepository<Teacher, String> {
     Optional<Teacher> findByEmail(String email);
 
     Boolean existsByEmail(String email);
-
-    Boolean existsById(String id);
-
-    void deleteById(String id);
 }
