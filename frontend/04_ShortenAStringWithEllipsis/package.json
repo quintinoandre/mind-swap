@@ -1,5 +1,5 @@
 {
-  "name": "shorten-a-string-with-ellipsis",
+  "name": "shorten_a_string_with_ellipsis",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

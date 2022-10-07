@@ -1,5 +1,5 @@
 {
-  "name": "convert-camelcase-to-snake_case-and-vice-verse",
+  "name": "convert_camelcase_to_snake_case_and_vice_verse",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

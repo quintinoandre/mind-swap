@@ -1,5 +1,5 @@
 {
-  "name": "parse-query-string",
+  "name": "parse_query_string",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

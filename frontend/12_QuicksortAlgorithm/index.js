@@ -33,20 +33,14 @@ function quicksort(array, lowIndex, hightIndex) {
     return;
   }
 
-   const pivot = [
-    array[lowIndex],
-    array[Math.round(hightIndex / 2)],
-    array[hightIndex],
-  ].sort()[1];
+  const randomPivotIndex =
+    Math.floor(Math.random() * (hightIndex - lowIndex + 1)) + lowIndex;
 
-  /*const randomPivotIndex =
-    Math.floor(Math.random() * (hightIndex - lowIndex)) + lowIndex;*/
-
-  //const pivot = array[randomPivotIndex];
+  const pivot = array[randomPivotIndex];
 
   //const pivot = array[hightIndex];
 
-  swapArrayPositions(array, array.indexOf(pivot), hightIndex);
+  swapArrayPositions(array, randomPivotIndex, hightIndex);
 
   let leftIndex = partition(lowIndex, hightIndex, array, pivot);
 
@@ -55,15 +49,24 @@ function quicksort(array, lowIndex, hightIndex) {
   quicksort(array, leftIndex + 1, hightIndex);
 }
 
-const randomArray = (length, max) => [
-  ...new Set(
-    Array(length)
-      .fill()
-      .map(() => Math.round(Math.random() * max))
-  ),
-];
+const randomArray = (length, min, max) => {
+  let randomArray = [];
 
-const array = randomArray(1000, 10000);
+  while (randomArray.length < length) {
+    randomArray = [
+      ...new Set([
+        ...randomArray,
+        ...Array(length - randomArray.length)
+          .fill()
+          .map(() => Math.floor(Math.random() * (max - min + 1)) + min),
+      ]),
+    ];
+  }
+
+  return randomArray;
+};
+
+const array = randomArray(10, 1, 10);
 console.log(array);
 quicksort(array, 0, array.length - 1);
 console.log(array);
