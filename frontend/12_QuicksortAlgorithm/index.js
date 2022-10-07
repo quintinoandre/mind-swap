@@ -28,25 +28,29 @@ function partition(lowIndex, hightIndex, array, pivot) {
   return leftIndex;
 }
 
-function quicksort(array, lowIndex, hightIndex) {
-  if (lowIndex >= hightIndex) {
-    return;
+function quicksort(array) {
+  function quicksortWithIndexes(array, lowIndex, hightIndex) {
+    if (lowIndex >= hightIndex) {
+      return;
+    }
+
+    const randomPivotIndex =
+      Math.floor(Math.random() * (hightIndex - lowIndex + 1)) + lowIndex;
+
+    const pivot = array[randomPivotIndex];
+
+    //const pivot = array[hightIndex];
+
+    swapArrayPositions(array, randomPivotIndex, hightIndex);
+
+    let leftIndex = partition(lowIndex, hightIndex, array, pivot);
+
+    quicksortWithIndexes(array, lowIndex, leftIndex - 1);
+
+    quicksortWithIndexes(array, leftIndex + 1, hightIndex);
   }
 
-  const randomPivotIndex =
-    Math.floor(Math.random() * (hightIndex - lowIndex + 1)) + lowIndex;
-
-  const pivot = array[randomPivotIndex];
-
-  //const pivot = array[hightIndex];
-
-  swapArrayPositions(array, randomPivotIndex, hightIndex);
-
-  let leftIndex = partition(lowIndex, hightIndex, array, pivot);
-
-  quicksort(array, lowIndex, leftIndex - 1);
-
-  quicksort(array, leftIndex + 1, hightIndex);
+  return quicksortWithIndexes(array, 0, array.length - 1);
 }
 
 const randomArray = (length, min, max) => {
@@ -66,7 +70,7 @@ const randomArray = (length, min, max) => {
   return randomArray;
 };
 
-const array = randomArray(10, 1, 10);
+const array = randomArray(10, 1, 20);
 console.log(array);
-quicksort(array, 0, array.length - 1);
+quicksort(array);
 console.log(array);
