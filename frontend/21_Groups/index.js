@@ -27,7 +27,7 @@ class Group {
     const newGroup = new Group();
 
     for (const element of array) {
-      newGroup.group.push(element);
+      newGroup.add(element);
     }
 
     return newGroup;
