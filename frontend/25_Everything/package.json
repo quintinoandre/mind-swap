@@ -1,0 +1,28 @@
+{
+	"name": "25_everything",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"dev": "node .",
+		"test": "vitest",
+		"lint": "eslint ./",
+		"lintFix": "eslint ./ --fix",
+		"format": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx,html,css,scss}\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"eslint": "^7.32.0 || ^8.2.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.25.2",
+		"eslint-plugin-import-helpers": "^1.2.1",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-unused-imports": "^2.0.0",
+		"prettier": "^2.7.1",
+		"vitest": "^0.24.1"
+	}
+}
