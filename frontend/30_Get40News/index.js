@@ -13,9 +13,9 @@ function get40news() {
 		api.get('/search?page=2').then((response) => response.data.hits)
 	);
 
-	return Promise.all(promises);
+	return Promise.all(promises).then((response) => response.flat());
 }
 
 get40news()
-	.then((response) => console.log(response.flat()))
+	.then((response) => console.log(response))
 	.catch((err) => console.log(err.response ? err.response.data : err.message));
