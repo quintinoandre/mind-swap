@@ -1,47 +1,54 @@
-import { api } from './api';
-
-interface IHitProps {
-	objectID: number;
-}
-
-interface IPromiseProps {
-	id: number;
-	promise: Promise<any>;
-}
-
-async function generateArrayOfPromises(): Promise<IPromiseProps[]> {
-	const {
-		data: { hits },
-	} = await api.get('/search');
-
-	return hits.map((hit: IHitProps) => ({
-		id: hit.objectID,
-		promise: api.get(`/items/${hit.objectID}`),
-	}));
-}
+const promises = [
+	new Promise((resolve) => {
+		setTimeout(() => {
+			resolve('after 3s');
+		}, 3000);
+	}),
+	new Promise((resolve) => {
+		setTimeout(() => {
+			resolve('after 1s');
+		}, 1000);
+	}),
+	new Promise((resolve) => {
+		setTimeout(() => {
+			resolve('after 4s');
+		}, 4000);
+	}),
+	new Promise((resolve) => {
+		setTimeout(() => {
+			resolve('after 5s');
+		}, 5000);
+	}),
+	new Promise((resolve) => {
+		setTimeout(() => {
+			resolve('after 2s');
+		}, 2000);
+	}),
+];
 
 void (async () => {
-	const arrayOfPromises = await generateArrayOfPromises();
-
 	async function* promisesToAsyncIterator(
-		arrayOfPromises: IPromiseProps[]
+		arrayOfPromises: Array<Promise<any>>
 	): AsyncGenerator<any, void, unknown> {
-		while (arrayOfPromises.length > 0) {
-			const response = await Promise.any(
-				arrayOfPromises.map(async ({ promise }) => await promise)
+		const promiseByKey = new Map();
+
+		for (let i = 0; i < arrayOfPromises.length; i++) {
+			promiseByKey.set(
+				i,
+				arrayOfPromises[i].then((value) => ({ value, key: i }))
 			);
+		}
 
-			const index = arrayOfPromises.findIndex(
-				({ id }) => Number(id) === response.data.id
-			);
+		while (promiseByKey.size > 0) {
+			const promise = await Promise.any(promiseByKey.values());
 
-			arrayOfPromises.splice(index, 1);
+			promiseByKey.delete(promise.key);
 
-			yield response.data;
+			yield promise.value;
 		}
 	}
 
-	const generator = promisesToAsyncIterator(arrayOfPromises);
+	const generator = promisesToAsyncIterator(promises);
 
 	for await (const value of generator) {
 		console.log(value);
