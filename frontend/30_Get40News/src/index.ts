@@ -22,11 +22,11 @@ async function get40news(): Promise<any> {
 	const promises = [];
 
 	promises.push(
-		await api.get('/search?page=1').then((response) => response.data.hits)
+		api.get('/search?page=1').then((response) => response.data.hits)
 	);
 
 	promises.push(
-		await api.get('/search?page=2').then((response) => response.data.hits)
+		api.get('/search?page=2').then((response) => response.data.hits)
 	);
 
 	return await Promise.all(promises).then((response) => response.flat());
