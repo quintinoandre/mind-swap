@@ -1,0 +1,170 @@
+/* ! GLOBAL */
+:root {
+  --body-bg-color: #22212c;
+  --text-color: #837e9f;
+  --bg-cards: #302f3d;
+  --bg-techs: #cb92b1;
+  --green-100: #00ff00;
+  --black: #000000;
+}
+
+:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 0.125rem var(--bg-techs);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--body-bg-color);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+
+/* ! ASIDE */
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  margin-top: 2.5rem;
+  margin-left: 2.5rem;
+  margin-bottom: 3.625rem;
+}
+
+
+/* ! INFO_CARD */
+.infocard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 21.75rem;
+  height: 18.25rem;
+  background: var(--bg-cards);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 1.25rem;
+}
+
+.infocard img {
+  width: 8rem;
+  height: 8rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 0.125rem solid var(--green-100);
+  border-radius: 999px;
+}
+
+.infocard strong {
+  margin-bottom: 0.625rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.4375rem;
+  line-height: 1.8125rem;
+}
+
+.infocard span {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.8125rem;
+  line-height: 1rem;
+}
+
+
+/* ! CONTACTS_CARD */
+.contactscard {
+  width: 21.75rem;
+  height: 21.75rem;
+  background: var(--bg-cards);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 1.25rem;
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.contactscard .gridcontainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1.375rem;
+  column-gap: 1.375rem;
+  width: 0;
+  align-items: center;
+}
+
+.contactscard .gridcontainer .gridicon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.contactscard .gridcontainer .gridtext {
+  font-style: normal;
+  font-size: 0.8125rem;
+  line-height: 1rem;
+}
+
+
+/* ! TECHNOLOGIES_CARD */
+.technologiescard {
+  width: 21.75rem;
+  height: 13rem;
+  background: var(--bg-cards);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.technologiescard header h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
+}
+
+.technologiescard footer {
+  display: flex;
+  justify-content: center;
+}
+
+.technologiescard .gridcontainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 0.9375rem;
+  column-gap: 0.9375rem;
+}
+
+.technologiescard .gridcontainer .gridbadge {
+  background: var(--bg-techs);
+  border-radius: 1.875rem;
+  width: 5.375rem;
+  height: 1.5rem;
+  text-align: center;
+}
+
+.technologiescard .gridcontainer .gridbadge span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.625rem;
+  line-height: 0.8125rem;
+  text-transform: uppercase;
+  color: var(--black);
+}
