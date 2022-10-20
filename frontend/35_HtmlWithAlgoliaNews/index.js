@@ -26,6 +26,8 @@ import { findNews } from './api';
 
     a.href = item.url;
 
+    a.target = '_blank'
+
     const li = document.createElement('li');
 
     li.appendChild(a);
