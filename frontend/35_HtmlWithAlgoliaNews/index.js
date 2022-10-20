@@ -1,4 +1,4 @@
-import { findNews } from './api';
+import { findNews, findNewsComments } from './api';
 
 (async () => {
   const news = await findNews('html', 30);
@@ -19,19 +19,61 @@ import { findNews } from './api';
 
   main.appendChild(ol);
 
-  news.map((item) => {
+  async function handleButtonClick(buttonId) {
+    const newsId = buttonId.replace('button', '');
+
+    const newsComments = await findNewsComments(newsId);
+
+    const nestedOl = document.createElement('ol');
+
+    const li = document.querySelector(`#li${newsId}`);
+
+    li.appendChild(nestedOl);
+
+    newsComments.forEach((comment) => {
+      const nestedLi = document.createElement('li');
+
+      nestedLi.innerHTML = comment;
+
+      nestedOl.appendChild(nestedLi);
+    });
+
+    document.querySelector(`#${buttonId}`).remove();
+  }
+
+  news.forEach((item) => {
     const a = document.createElement('a');
 
     a.innerText = item.title;
 
     a.href = item.url;
 
-    a.target = '_blank'
+    a.target = '_blank';
+
+    const div = document.createElement('div');
+
+    ol.appendChild(div);
 
     const li = document.createElement('li');
 
+    li.setAttribute('id', `li${item.id}`);
+
     li.appendChild(a);
 
-    ol.appendChild(li);
+    div.appendChild(li);
+
+    const button = document.createElement('button');
+
+    button.innerText = 'view comments';
+
+    button.setAttribute('id', `button${item.id}`);
+
+    button.addEventListener(
+      'click',
+      ({ target: { id } }) => handleButtonClick(id),
+      { once: true }
+    );
+
+    div.appendChild(button);
   });
 })();

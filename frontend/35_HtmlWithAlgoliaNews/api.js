@@ -11,6 +11,7 @@ async function findNews(subject, numberOfNews) {
 
   const news = response.data.hits.map((article) => {
     return {
+      id: article.objectID,
       title: article.title,
       url: article.url,
     };
@@ -19,4 +20,12 @@ async function findNews(subject, numberOfNews) {
   return news;
 }
 
-export { findNews };
+async function findNewsComments(newsId) {
+  const response = await api.get(`/items/${newsId}`);
+
+  const comments = response.data.children.map((item) => item.text);
+
+  return comments;
+}
+
+export { findNews, findNewsComments };
