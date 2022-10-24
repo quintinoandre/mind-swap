@@ -1,0 +1,117 @@
+:root {
+  --orange-100: #ff774e;
+  --blue-100: #0000ff;
+  --white-100: #f3f3f3;
+  --white-200: #eee;
+}
+
+:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--orange-100);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--white-100);
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+body > div {
+  background: white;
+  max-width: 100rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+header svg {
+  width: 3.75em;
+  height: 1.75em;
+}
+
+header nav div {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+header nav div:first-child a:last-child {
+  color: var(--orange-100);
+}
+
+header nav div:first-child a:last-child:focus {
+  box-shadow: 0 0 0 2px black;
+}
+
+header nav div:last-child a:first-child {
+  color: var(--blue-100);
+  font-size: 0.875rem;
+}
+
+header nav div:last-child a:first-child:focus {
+  box-shadow: 0 0 0 2px var(--blue-100);
+}
+
+header nav div:last-child a:last-child {
+  font-size: 0.875rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.separator {
+  border-top: 2px solid var(--white-200);
+}
+
+main nav {
+  display: flex;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  font-size: 0.875rem;
+  gap: 1.25rem;
+}
+
+main a:first-child {
+  color: var(--orange-100);
+}
+
+main a:first-child:focus {
+  box-shadow: 0 0 0 2px black;
+}
+
+main > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  width: 85rem;
+  background-repeat: no-repeat;
+  padding-bottom: 1.25rem;
+}
+
+main svg {
+  position: absolute;
+}
