@@ -1,0 +1,15 @@
+.like-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 0;
+  background-color: transparent;
+}
+
+.like-button:hover {
+  background-color: #ccc5b9;
+  cursor: pointer;
+}
