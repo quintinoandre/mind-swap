@@ -1,0 +1,33 @@
+.game-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.25rem;
+}
+
+.game-info button {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  border: 0;
+  background: var(--green-500);
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.game-info button:hover {
+  background: var(--green-300);
+}
+
+.status {
+  margin-bottom: 0.625rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
