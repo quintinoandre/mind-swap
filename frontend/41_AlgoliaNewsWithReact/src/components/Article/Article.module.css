@@ -1,0 +1,14 @@
+.li-container {
+  margin-bottom: 0.5rem;
+}
+
+.li-container-a {
+  text-decoration: none;
+  color: black;
+}
+
+.comment-container {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  background-color: var(--gray-200);
+}

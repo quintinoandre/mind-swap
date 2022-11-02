@@ -1,0 +1,14 @@
+.button-container {
+  border: 0;
+  background: var(--orange-200);
+  color: white;
+  font-weight: bold;
+  padding: 0 0.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.button-container:hover {
+  background: var(--orange-100);
+  transition: background-color 0.2s;
+}

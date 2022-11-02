@@ -1,0 +1,36 @@
+:root {
+  --gray-100: #f6f6f0;
+  --gray-200: #e1e1e1;
+  --orange-100: #ff8d2b;
+  --orange-200: #ff6701;
+}
+
+:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 0.125rem var(--orange-200);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
