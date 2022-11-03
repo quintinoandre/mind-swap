@@ -1,0 +1,75 @@
+.taskRowContainer td {
+  background-color: var(--gray-500);
+  border-top: 4px solid var(--gray-600);
+  padding: 1rem;
+  text-align: center;
+}
+
+.taskRowContainer td:nth-child(2) {
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.taskRowContainer:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.taskRowContainer:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+.checkCircleButton {
+  background: var(--purple-200);
+  border: 0;
+  color: var(--gray-100);
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 999px;
+  transition: color 0.1s, background-color 0.1s;
+}
+
+.checkCircleButton:hover {
+  background: var(--purple-100);
+}
+
+.circleButton {
+  background: transparent;
+  border: 0;
+  color: var(--blue-100);
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 4px;
+  transition: color 0.1s;
+}
+
+.circleButton:hover {
+  color: var(--blue-200);
+}
+
+.taskDone {
+  width: 53.4375rem;
+  height: 2.5rem;
+  color: var(--gray-300);
+  text-decoration-line: line-through;
+}
+
+.taskNotDone {
+  width: 53.4375rem;
+  height: 2.5rem;
+  color: var(--gray-100);
+}
+
+.trashButton {
+  background: transparent;
+  border: 0;
+  color: var(--gray-300);
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 4px;
+  transition: color 0.1s;
+}
+
+.trashButton :hover {
+  color: var(--red-100);
+  background: var(--gray-400);
+}

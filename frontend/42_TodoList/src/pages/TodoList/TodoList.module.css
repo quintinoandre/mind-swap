@@ -1,0 +1,58 @@
+.tasksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: absolute;
+  width: 65.3125rem;
+  height: 25.125rem;
+  left: calc(50% - 65.3125rem / 2);
+  top: 18.1875rem;
+}
+
+.listContainer {
+  flex: 1;
+  overflow: auto;
+}
+
+.listContainer::-webkit-scrollbar {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.listContainer::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-100);
+}
+
+.listContainer::-webkit-scrollbar-thumb {
+  background: var(--blue-200);
+  border: 1px solid var(--blue-200);
+  transition: color 0.1s, background-color 0.1s;
+}
+
+.listContainer::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-100);
+}
+
+.listContainer::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.listContainer table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.listContainer table th {
+  background: var(--gray-400);
+  padding: 1rem;
+  text-align: left;
+}
+
+.listContainer table th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.listContainer table th:last-child {
+  border-top-right-radius: 8px;
+}

@@ -1,0 +1,26 @@
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1.5rem;
+  gap: 1rem;
+  width: 46rem;
+  height: 15.25rem;
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
+  margin: auto;
+}
+
+.emptyContainer div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--gray-300);
+}
+
+.emptyContainer strong {
+  font-weight: 700;
+}
