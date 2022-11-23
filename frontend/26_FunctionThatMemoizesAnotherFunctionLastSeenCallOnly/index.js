@@ -1,14 +1,14 @@
 const memoize = (fn) => {
-	const result = new Array(2);
+	const cache = new Array(2);
 
 	return (...args) => {
-		if (!result.includes(args.toString())) {
-			result[0] = args.toString();
+		if (!cache.includes(args.toString())) {
+			cache[0] = args.toString();
 
-			result[1] = fn(...args);
+			cache[1] = fn(...args);
 		}
 
-		return result[1];
+		return cache[1];
 	};
 };
 
