@@ -1,12 +1,11 @@
-const memoize = (func) => {
-	const result = Array(2);
+const memoize = (fn) => {
+	const result = new Array(2);
 
 	return (...args) => {
-		const argsKey = JSON.stringify(args);
+		if (!result.includes(args.toString())) {
+			result[0] = args.toString();
 
-		if (result[0] !== argsKey) {
-			result[0] = argsKey;
-			result[1] = func(...args);
+			result[1] = fn(...args);
 		}
 
 		return result[1];
